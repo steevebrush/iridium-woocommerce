@@ -5,7 +5,7 @@ Requires at least: 3.0.1
 Tested up to: 4.4.1
 Stable tag: trunk
 License: BipCot NoGov Software License bipcot.org
-License URI: https://github.com/Iridiumvanets/Iridium-woocommerce/blob/master/LICENSE
+License URI: https://github.com/steevebrush/iridium-woocommerceblob/master/LICENSE
 
 
 Iridium for WooCommerce is a Wordpress plugin that allows merchants to accept IRD at WooCommerce-powered online stores.
@@ -19,9 +19,9 @@ Once you have installed and activated WooCommerce, you may install and activate 
 
 * Fully automatic operation.
 * Can be used with view only wallet so only the view private key is on the server and none of the spend private keys are required to be kept anywhere on your online store server.
-* Accept payments in Iridiums directly into your Iridium wallet.
+* Accept payments with Iridium directly into your Iridium wallet.
 * Iridium wallet payment option completely removes dependency on any third party service and middlemen.
-* Accept payment in Iridiums for physical and digital downloadable products.
+* Accept payment with Iridium for physical and digital downloadable products.
 * Add Iridium option to your existing online store with alternative main currency.
 * Flexible exchange rate calculations fully managed via administrative settings.
 * Zero fees and no commissions for Iridium processing from any third party.
@@ -45,7 +45,7 @@ Once you have installed and activated WooCommerce, you may install and activate 
 	    and paste your wallet address into "Wallet Address" field.
 9.  Select "Iridium service provider" = "Local Wallet" and fill-in other settings at Iridium management panel.
 10. Press [Save changes]
-11. If you do not see any errors - your store is ready for operation and to access payments in Iridiums!
+11. If you do not see any errors - your store is ready for operation and to access payments with Iridium!
 
 
 == Remove plugin ==

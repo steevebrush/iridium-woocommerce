@@ -2,11 +2,11 @@
 /*
 
 Plugin Name: Iridium for WooCommerce
-Plugin URI: https://github.com/Iridiumvanets/Iridium-woocommerce/
-Description: Iridium for WooCommerce plugin allows you to accept payments in Iridiums for physical and digital products at your WooCommerce-powered online store.
-Version: 0.01
-Author: KittyCatTech
-Author URI: https://github.com/Iridiumvanets/Iridium-woocommerce/
+Plugin URI: https://github.com/steevebrush/iridium-woocommerce
+Description: Iridium for WooCommerce plugin allows you to accept payments with Iridium for physical and digital products at your WooCommerce-powered online store.
+Version: 0.02
+Author: Stevebrush adapted from KittyCatTech work for Karbo
+Author URI: https://github.com/steevebrush/iridium-woocommerce
 License: BipCot NoGov Software License bipcot.org
 
 */

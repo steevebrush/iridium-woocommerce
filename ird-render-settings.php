@@ -1,7 +1,8 @@
 <?php
 /*
 Iridium for WooCommerce
-https://github.com/Iridiumvanets/Iridium-woocommerce/
+https://github.com/steevebrush/iridium-woocommerce
+Adapted by stevebrush from krb plugin
 */
 
 // Include everything
@@ -210,7 +211,7 @@ function IRD__render_general_settings_page_html ()
             <input type="text" name="exchange_multiplier" value="<?php echo $IRD_settings['exchange_multiplier']; ?>" size="4" />
             <p class="description">
               Extra multiplier to apply to convert store default currency to Iridium price.
-              <br />Example: 1.05 - will add extra 5% to the total price in Iridiums.
+              <br />Example: 1.05 - will add extra 5% to the total price with Iridium.
               May be useful to compensate for market volatility or for merchant's loss to fees when converting Iridiums to local currency,
                 or to <strong>encourage customer to use Iridium</strong> for purchases (by setting multiplier to < 1.00 values).
             </p>

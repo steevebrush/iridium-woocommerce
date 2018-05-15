@@ -1,7 +1,8 @@
 <?php
 /*
 Iridium for WooCommerce
-https://github.com/Iridiumvanets/Iridium-woocommerce/
+https://github.com/steevebrush/iridium-woocommerce
+Adapted by stevebrush from krb plugin
 */
 
 
