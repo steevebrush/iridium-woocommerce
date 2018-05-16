@@ -25,17 +25,17 @@ global $g_IRD__config_defaults;
 $g_IRD__config_defaults = array (
 
    // ------- Hidden constants
-   'assigned_address_expires_in_mins'     =>  12*60,   // 12 hours to pay for order and receive necessary number of confirmations.
+   'assigned_address_expires_in_mins'     =>  2*60,   // 2 hours to pay for order and receive necessary number of confirmations.
    'funds_received_value_expires_in_mins' =>  '5',		// 'received_funds_checked_at' is fresh (considered to be a valid value) if it was last checked within 'funds_received_value_expires_in_mins' minutes.
    'blockchain_api_timeout_secs'          =>  '20',   // Connection and request timeouts for curl operations dealing with blockchain requests.
    'exchange_rate_api_timeout_secs'       =>  '10',   // Connection and request timeouts for curl operations dealing with exchange rate API requests.
    'soft_cron_job_schedule_name'          =>  'minutes_1',   // WP cron job frequency
-   'cache_exchange_rates_for_minutes'	  =>	1,			// Cache exchange rate for that number of minutes without re-calling exchange rate API's.
+   'cache_exchange_rates_for_minutes'	  =>	5,			// Cache exchange rate for that number of minutes without re-calling exchange rate API's.
 
    // ------- General Settings
-   'service_provider'				 						  =>  'local_wallet',		// 'blockchain_info'
+   'service_provider'				 	  =>  'local_wallet',		// 'blockchain_info'
    'address'                              =>  '', 
-   'confs_num'                            =>  '4', // number of confirmations required before accepting payment.
+   'confs_num'                            =>  '5', // number of confirmations required before accepting payment.
    'exchange_multiplier'                  =>  '1.00',
 
    'delete_db_tables_on_uninstall'        =>  '0',
@@ -44,7 +44,7 @@ $g_IRD__config_defaults = array (
 
    // ------- Special settings
    'exchange_rates'                       =>  array('EUR' => array('method|type' => array('time-last-checked' => 0, 'exchange_rate' => 1), 'GBP' => array())),
-   'walletd_api'          =>  '127.0.0.1:14007',   // walletd api:port must be setup before first activation
+   'walletd_api'          =>  '127.0.0.1:14007',   // walletd api:port
    );
 //===========================================================================
 
