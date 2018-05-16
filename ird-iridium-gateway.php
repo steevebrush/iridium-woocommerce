@@ -240,30 +240,26 @@ $payment_instructions = '
 <table class="table_iridium">
     <thead>
         <tr>
-            <th>' . __('Please send your Iridium payment as follows:', 'woocommerce') . '</th>
+            <th><img style=" height: 34px; float: right;margin: -5px 5px 0 0;"  src="' . plugins_url('/images/IRD_buyitnow_32x.png', __FILE__).'">' . __('Please send your Iridium payment as follows :', 'woocommerce') . '</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>' . __('Amount', 'woocommerce') . ' (<strong>IRD</strong>): {{{IRDCOINS_AMOUNT}}}</td>
+       
+         <tr>
+            <td>' . __('Amount', 'woocommerce') . ' : <br/><strong>{{{IRDCOINS_AMOUNT}}} IRD</strong><br/>'  . __('Address : ', 'woocommerce') . '<br/><span style="font-size: 0.8em;font-weight: bold;">{{{IRDCOINS_ADDRESS}}}</span><br/>' . __('Payment ID : ', 'woocommerce'). '<span style="font-size: 0.9em;font-weight: bold;"><br/>{{{IRDCOINS_PAYMENTID}}}</span><br/><span style=" color: red;">' .__('Mandatory or your transaction will be lost', 'woocommerce') . '</span></td>
         </tr>
         <tr>
-            <td>' . __('Payment ID : ', 'woocommerce') . '<br/>{{{IRDCOINS_PAYMENTID}}}</td>
-        </tr>
-        <tr>
-            <td>'  . __('Address : ', 'woocommerce') . '<br/>{{{IRDCOINS_ADDRESS}}}</td>
+            <td>' . __('Please note:', 'woocommerce') . '
+            <ol style="font-size: 0.9em;">
+    <li>' . __('You must make a payment within 2 hours, or your order will be cancelled', 'woocommerce') . '</li>
+    <li>' . __('As soon as your payment is received in full you will receive an email confirmation with order delivery details.', 'woocommerce') . '</li>
+    <li>{{{EXTRA_INSTRUCTIONS}}}</li>
+</ol></td>
         </tr>
     </tbody>
     
 </tr>
-</table>
-' . __('Please note:', 'woocommerce') . '
-<ol class="bpit-instructions">
-    <li>' . __('You must make a payment within 1 hour, or your order will be cancelled', 'woocommerce') . '</li>
-    <li>' . __('As soon as your payment is received in full you will receive email confirmation with order delivery details.', 'woocommerce') . '</li>
-    <li>{{{EXTRA_INSTRUCTIONS}}}</li>
-</ol>
-';
+</table>';
 				$payment_instructions_description = trim ($payment_instructions_description);
 	    	//-----------------------------------
 
