@@ -121,7 +121,7 @@ function IRD_create_menu()
         'administrator',                                        // Capability
         'IRD-settings',                                        // Handle - First submenu's handle must be equal to parent's handle to avoid duplicate menu entry.
         'IRD__render_general_settings_page',                   // Function
-        plugins_url('/images/Iridium_16x.png', __FILE__)      // Icon URL
+        plugins_url('/images/iridium_16x.png', __FILE__)      // Icon URL
         );
 
     add_submenu_page (
