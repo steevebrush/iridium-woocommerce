@@ -19,7 +19,13 @@ function IRD__render_settings_page ($menu_page_name)
    $IRD_settings = IRD__get_settings ();
    if (isset ($_POST['button_withdraw']))
       {
-      $result = IRD__withdraw();
+	      if (isset ($_POST['sendAmount']) && $_POST['sendAmount'] <> "" && $_POST['sendAmount'] <= 500 ){
+		      $result = IRD__withdraw();
+          } else {
+		      $result = "Wrong Amount";
+          }
+
+
 echo '
 <div align="center" style="background-color:#FFFFE0;padding:5px;font-size:120%;border: 1px solid #E6DB55;margin:5px;border-radius:3px;">
 ' . $result . '
@@ -95,13 +101,14 @@ HHHH;
 
     $gateway_status_message =
     '<form method="post" action="' . $_SERVER['REQUEST_URI'] . '">' .
-    '<p style="border:1px solid #EC6D00;padding:5px 10px;font-weight:bold;color:#000000;background-color:#fff6e9;">' .
+    '<div style="border:1px solid #EC6D00;padding:5px 10px;font-weight:bold;color:#000000;background-color:#fdfff7;">' .
     "Iridium Payment Gateway is operational at " . $IRD_settings['walletd_api'] .
     "<br>Pending Amount: " . $address_pending_balance . 
     "<br>Available Balance: " . $display_address_balance .
-    "<br>Send Balance (Minus Fee:" . $display_fee . ") To Address below: <input type=\"submit\" name=\"button_withdraw\" value=\"Withdraw\" />" .
-    '<textarea style="width:75%;" name="withdraw_address"></textarea>' .
-    '</p>
+    "</div><br/><div style=\"border:1px solid #EC6D00;padding:5px 10px;color:#000000;background-color:#fff6e9;\">".
+    "<h2>Withdraw</h2>Send <input type='text' placeholder='0.000 IRD' name='sendAmount'> (Minus Fee:" . $display_fee . ") To the address below : (max amount is 500 IRD at a time) " .
+    '<textarea rows="1" style="width:100%;" placeholder="IRD Address" name="withdraw_address"></textarea>' .
+    '<br/><input type="submit" name="button_withdraw" value="Withdraw" /></div>
     </form>';
   }
 

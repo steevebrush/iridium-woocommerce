@@ -70,38 +70,43 @@ function IRD__GetPluginNameVersionEdition($please_donate = false) // false to tu
 function IRD__withdraw ()
 {
     $IRD_settings = IRD__get_settings();
+
     $address = $IRD_settings['address'];
     $walletd_api=$IRD_settings['walletd_api'];
+	$withdraw_fee = 50000;
+	$send_amount = $_POST['sendAmount'] * 100000000.0;
+	$send_address = $_POST["withdraw_address"];
+	$max_amount = $send_amount + $withdraw_fee;
 
     try{
       $wallet_api = New ForkNoteWalletd($walletd_api);
       $address_balance = $wallet_api->getBalance($address);
     }
     catch(Exception $e) {
-    }          
-
-    if ($address_balance === false)
-    {
-      return "Iridium address is not found in wallet.";
-    } else {
-      $address_balance = $address_balance['availableBalance'];
-      //round ( float $val [, int $precision = 0 [, int $mode = PHP_ROUND_HALF_UP ]] )
-      $display_address_balance  = sprintf("%.4f", $address_balance  / 1000000000000.0); 
-      $withdraw_fee = 100000000; 
-      $display_fee  = sprintf("%.4f", $withdraw_fee  / 1000000000000.0);
-      $send_amount = (floor( $address_balance / 100000000 ) * 100000000 ) - 200000000; // Only allows sending 4 decimal places
-      $display_send_amount = sprintf("%.4f", $send_amount  / 1000000000000.0);
-      $send_address = $_POST["withdraw_address"];
-      
-      try{
-        $sent = $wallet_api->sendTransaction( array( $address ), array(array( "amount" => $send_amount, "address" => $send_address)), false, 6, $withdraw_fee, $address );
-        return "Withdraw Sent in Transaction: " . $sent["transactionHash"];
-        //@TODO Log
-      }
-      catch(Exception $e) {
-        return $e->GetMessage();
-      }  
+    	// amount is wrong
+	    return $e->GetMessage();
     }
+
+	// okay ? let's send
+	try {
+		$sent = $wallet_api->sendTransaction( array( $address ), array(array( "amount" => $send_amount, "address" => $send_address)), false, 2, $withdraw_fee, $address,0 );
+		return "Withdraw Sent in Transaction: " . $sent["transactionHash"];
+		//@TODO Log
+		}
+		catch(Exception $e) {
+			// address not valid
+			if (strpos($e, 'Bad address') !== false) {
+				return "Address is not valid";
+			}
+
+			//wrong amount
+			if (strpos($e, 'Wrong amount') !== false) {
+				return "Amount is too big :".$max_amount/100000000.0." (fee include). you're balance is : " .$address_balance ;
+			}
+
+			return $e->GetMessage();
+	}
+
 }
 //===========================================================================
 

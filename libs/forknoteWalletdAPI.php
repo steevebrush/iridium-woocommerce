@@ -32,6 +32,7 @@ class ForkNoteWalletd {
       $url = $this->server . "/json_rpc";
       curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json; charset=utf-8"));
       curl_setopt($ch, CURLOPT_URL, $url );
+//      debug
 //      echo json_encode( $req );
       curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $req ) );
       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
