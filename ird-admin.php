@@ -69,43 +69,51 @@ function IRD__GetPluginNameVersionEdition($please_donate = false) // false to tu
 //===========================================================================
 function IRD__withdraw ()
 {
-    $IRD_settings = IRD__get_settings();
-
-    $address = $IRD_settings['address'];
-    $walletd_api=$IRD_settings['walletd_api'];
+	$IRD_settings = IRD__get_settings();
+	$address = $IRD_settings['address'];
+	$walletd_api=$IRD_settings['walletd_api'];
 	$withdraw_fee = 50000;
 	$send_amount = $_POST['sendAmount'] * 100000000.0;
 	$send_address = $_POST["withdraw_address"];
 	$max_amount = $send_amount + $withdraw_fee;
 
-    try{
-      $wallet_api = New ForkNoteWalletd($walletd_api);
-      $address_balance = $wallet_api->getBalance($address);
-    }
-    catch(Exception $e) {
-    	// amount is wrong
-	    return $e->GetMessage();
-    }
+	try{
+		$wallet_api = New ForkNoteWalletd($walletd_api);
+		$address_balance = $wallet_api->getBalance($address);
+	}
+
+	catch(Exception $e) {
+		// amount is wrong
+		return $e->GetMessage();
+	}
 
 	// okay ? let's send
 	try {
-		$sent = $wallet_api->sendTransaction( array( $address ), array(array( "amount" => $send_amount, "address" => $send_address)), false, 2, $withdraw_fee, $address,0 );
+		$sent = $wallet_api->sendTransaction( array( $address ), array(
+			array(
+				"amount" => $send_amount,
+				"address" => $send_address
+			)
+		), false, 2, $withdraw_fee, $address, 0 );
+
+
 		return "Withdraw Sent in Transaction: " . $sent["transactionHash"];
 		//@TODO Log
+	} catch ( Exception $e ) {
+		// address not valid
+		if ( strpos( $e, 'Bad address' ) !== false ) {
+			return "Address is not valid";
 		}
-		catch(Exception $e) {
-			// address not valid
-			if (strpos($e, 'Bad address') !== false) {
-				return "Address is not valid";
-			}
 
-			//wrong amount
-			if (strpos($e, 'Wrong amount') !== false) {
-				return "Amount is too big :".$max_amount/100000000.0." (fee include). you're balance is : " .$address_balance ;
-			}
+		//wrong amount
+		if ( strpos( $e, 'Wrong amount' ) !== false ) {
+			return "Amount is too big : " . $max_amount / 100000000.0 . " (fee include). you're balance is : " . $address_balance['availableBalance'] / 100000000.0 ;
+		}
 
-			return $e->GetMessage();
+		return $e->GetMessage();
 	}
+
+
 
 }
 //===========================================================================

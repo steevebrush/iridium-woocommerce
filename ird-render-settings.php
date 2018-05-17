@@ -24,8 +24,6 @@ function IRD__render_settings_page ($menu_page_name)
           } else {
 		      $result = "Wrong Amount";
           }
-
-
 echo '
 <div align="center" style="background-color:#FFFFE0;padding:5px;font-size:120%;border: 1px solid #E6DB55;margin:5px;border-radius:3px;">
 ' . $result . '
@@ -61,9 +59,7 @@ HHHH;
       }
 
    // Output full admin settings HTML
-
-//    print_r(IRD__get_settings()).'<br/>';
-
+    
   $gateway_status_message = "";
   $gateway_valid_for_use = IRD__is_gateway_valid_for_use($gateway_status_message);
   if (!$gateway_valid_for_use)
@@ -79,7 +75,7 @@ HHHH;
     $address = $IRD_settings['address'];
 
     try{
-        $walletd_api=$IRD_settings['walletd_api'];
+      $walletd_api=$IRD_settings['walletd_api'];
       $wallet_api = New ForkNoteWalletd($walletd_api);
       $address_balance = $wallet_api->getBalance($address);
     }
